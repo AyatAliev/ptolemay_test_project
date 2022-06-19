@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ptolemay_test_project/core/ui/custom_icons.dart';
+import 'package:ptolemay_test_project/features/domain/usecases/get_dark_mode_usecase.dart';
 import 'package:ptolemay_test_project/features/domain/usecases/get_popular_usecase.dart';
 import 'package:ptolemay_test_project/features/presentation/bloc/home/home_bloc.dart';
 import 'package:ptolemay_test_project/features/presentation/bloc/theme/theme_bloc.dart';
@@ -25,7 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: BlocProvider<HomeBloc>(
           create: (_) {
             return HomeBloc(
-              getPopularUseCase: GetIt.I<GetPopularUseCase>(),
+              getWeatherUseCase: GetIt.I<GetWeatherUseCase>(),
+              getDarkModeUseCase: GetIt.I<GetDarkModeUseCase>(),
             );
           },
           child: BlocConsumer<HomeBloc, HomeState>(
@@ -38,9 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
               return Column(
                 children: [
                   if (state is GetPopularSuccess)
-                    Text(
-                      "${state.popularModel.results.length} count movie popular",
-                      style: Theme.of(context).textTheme.bodyLarge,
+                    Column(
+                      children: [
+                        Text(
+                          "Weather for ${state.weatherMain.sys.country}",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          "${state.weatherMain.name}: ${state.weatherMain.main.temp}",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
                     ),
                   centerTitleCounter(),
                   displayBottomButton(context),

@@ -1,5 +1,5 @@
-import 'package:ptolemay_test_project/features/data/model/movie_model.dart';
+import 'package:ptolemay_test_project/features/data/model/weather.dart';
 
 abstract class HomeDataSource {
-  Future<MovieModel> getPopular();
+  Future<WeatherMain> getWeather(double lat, double lon);
 }

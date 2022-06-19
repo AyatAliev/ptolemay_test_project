@@ -8,11 +8,17 @@ abstract class Failure extends Equatable {
 class ServerFailure extends Failure {
   final int statusCode;
   final String statusMessage;
-  final bool success;
 
   ServerFailure({
     required this.statusCode,
     required this.statusMessage,
-    required this.success,
+  });
+}
+
+class LocalFailure extends Failure {
+  final String statusMessage;
+
+  LocalFailure({
+    required this.statusMessage,
   });
 }

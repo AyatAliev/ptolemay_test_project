@@ -1,24 +1,20 @@
-class ServerException implements Exception {
+class ServerException {
   ServerException({
-    required this.statusCode,
-    required this.statusMessage,
-    required this.success,
+    required this.cod,
+    required this.message,
   });
-  late final int statusCode;
-  late final String statusMessage;
-  late final bool success;
+  late final int cod;
+  late final String message;
 
   ServerException.fromJson(Map<String, dynamic> json){
-    statusCode = json['status_code'];
-    statusMessage = json['status_message'];
-    success = json['success'];
+    cod = json['cod'];
+    message = json['message'];
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['status_code'] = statusCode;
-    _data['status_message'] = statusMessage;
-    _data['success'] = success;
-    return _data;
+    final data = <String, dynamic>{};
+    data['cod'] = cod;
+    data['message'] = message;
+    return data;
   }
 }

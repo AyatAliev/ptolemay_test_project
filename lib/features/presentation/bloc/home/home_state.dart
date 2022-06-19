@@ -28,15 +28,13 @@ class GetPopularError extends HomeState {
   GetPopularError({
     required this.statusCode,
     required this.statusMessage,
-    required this.success,
   });
 
   final int statusCode;
   final String statusMessage;
-  final bool success;
 
   @override
-  List<Object> get props => [statusMessage, statusCode, success];
+  List<Object> get props => [statusMessage, statusCode];
 }
 
 /// Get Popular State
@@ -44,11 +42,11 @@ class GetPopularError extends HomeState {
 class GetPopularLoading extends HomeState {}
 
 class GetPopularSuccess extends HomeState {
-  GetPopularSuccess(this.popularModel);
+  GetPopularSuccess(this.weatherMain);
 
-  final MovieModel popularModel;
+  final WeatherMain weatherMain;
 
   @override
-  List<Object> get props => [popularModel];
+  List<Object> get props => [weatherMain];
 }
 

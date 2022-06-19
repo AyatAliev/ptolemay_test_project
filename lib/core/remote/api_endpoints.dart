@@ -1,8 +1,9 @@
 class ApiEndpoints {
-  static const baseUrl = "https://api.themoviedb.org/3/";
-  static const apiKey = "412fa864f04063853cd4fce43d6c1c13";
+  static const baseUrl = "https://api.openweathermap.org/data/2.5/";
+  static const apiKey = "a6617172164eca881577390cab718471";
 
   /* Home Screen */
-  static const getPopular = "movie/popular?api_key=$apiKey&language=ru";
-
+  static String getWeather(double lat, double lon) {
+    return "weather?lat=$lat&lon=$lon&appid=$apiKey&units=metric";
+  }
 }
